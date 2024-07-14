@@ -11,6 +11,9 @@ function getCookie(name) {
 }
 const accessToken = getCookie('spotifyAccessToken');
 
+console.log('login');
+console.log(accessToken);
+
 document.addEventListener('DOMContentLoaded', function() {
     if (!accessToken) {
         // Redirecionar para a página de autenticação se não houver token
