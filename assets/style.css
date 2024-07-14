@@ -63,11 +63,12 @@ ul {
 }
 
 ul li {
-    background-color: #f1f1f1;
+/*    background-color: #f1f1f1;*/
     display: block;
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0px 0px 40px 0px rgba(143, 150, 175, 0.20);
 }
 
 ul li > a {
