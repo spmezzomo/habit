@@ -42,6 +42,13 @@ async function fetchRecentlyPlayedTracks() {
     const response = await fetch('https://api.spotify.com/v1/me/player/recently-played', {
         headers: { 'Authorization': `Bearer ${accessToken}` }
     });
+
+    if (response.status === 401) {
+        console.log('Unauthorized access - token may be invalid or expired');
+        authenticateSpotify(); // Reautentica se o token for inválido
+        return;
+    }
+
     const data = await response.json();
     const tracks = data.items.map(item => item.track);
     displayTracks(tracks, 'track-list-recent');
