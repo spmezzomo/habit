@@ -8,45 +8,21 @@
 <body>
     <h1>Callback do Spotify...</h1>
     <script>
-        function setCookie(name, value, days) {
+    	function setCookie(name, value, days) {
             const expires = new Date();
             expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
             document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
         }
-        // Função para extrair o token de acesso da URL
-        function getAccessTokenFromUrl() {
-            const hash = window.location.hash.substring(1);
-            const params = new URLSearchParams(hash);
-            return params.get('access_token');
-        }
 
-        // Exemplo de como lidar com o retorno após a autorização
-        const accessToken = getAccessTokenFromUrl();
+        const params = new URLSearchParams(window.location.hash.substring(1));
+        const accessToken = params.get('access_token');
+
         if (accessToken) {
-            // Armazenar o token de acesso de forma segura (ex: em cookies ou localStorage)
-            setCookie('spotifyAccessToken', accessToken, 30); // Armazenamento por 30 dias, ajuste conforme necessário
-
-            // Redirecionar ou executar ações após obter o token de acesso
-            window.location.href = 'index.html'; // Redirecionar para a página principal, por exemplo
+            setCookie('spotifyAccessToken', accessToken, 7); 
+            window.location.href = 'index.html';
         } else {
-            // Lidar com erro de autorização
-            console.error('Access token not found');
+            window.location.href = 'auth.html'
         }
-
-
-
-
-    	
-
-        // const params = new URLSearchParams(window.location.hash.substring(1));
-        // const accessToken = params.get('access_token');
-
-        // if (accessToken) {
-        //     setCookie('spotifyAccessToken', accessToken, 7); 
-        //     window.location.href = 'index.html';
-        // } else {
-        //     window.location.href = 'auth.html'
-        // }
     </script>
 </body>
 </html>
